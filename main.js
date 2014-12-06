@@ -28,7 +28,7 @@ function saveData(){
 function processData(){
   $("#process").prop("disabled",true);
   var data = $("#text").val();
-  sentences = data.split(/[.\n]/);
+  sentences = data.split(/\.\s|\n/g);
   for(var i=0;i<sentences.length;i++){
     if(sentences[i].length == 0)
       sentences.splice(i,1);
@@ -158,7 +158,7 @@ function calcWords(){
 
 function scoreSentences(){
     var str = $("#test_txt").val();
-    var s = str.split(/[.\n]/);
+    var s = str.split(/\.\s|\n/g);
     var s_scores = [];
     for(var i=0;i<s.length;i++){
       var score = 0;
