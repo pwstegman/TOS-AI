@@ -63,6 +63,7 @@ function selectSentence(e){
 var titles = [];
 var texts = [];
 var selects = [];
+var firstCalc = false;
 function loadEntries(b){
   $.get( "save.json?r="+Math.random(), function( data ) {
     var txt = "<ol>";
@@ -76,6 +77,10 @@ function loadEntries(b){
     $("#entries").html(txt);
     if(data.length == 0){
       $("#entries").html("No entries yet");
+    }
+    if(firstCalc == false){
+      calcWords();
+      firstCalc = true;
     }
     if(b)
       setTimeout(function(){loadEntries(true);},10000);
