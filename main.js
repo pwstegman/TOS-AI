@@ -185,10 +185,25 @@ function scoreSentences(){
     }else{
       min_score = scores_copy[scores_copy.length-1];
     }
-    var txt = "";
+    var results = [];
     for(var i=0;i<s.length;i++){
-      if(s[i].length > 0 && s_scores[i] > min_score)
-        txt += s[i]+" : "+s_scores[i]+"<br/>";
+      if(s[i].length > 0 && s_scores[i] >= min_score)
+        results.push([i,s_scores[i]]);
     }
+    results.sort(compareSecondColumn);
+    var txt = "<ol>";
+    for(var i=0;i<results.length;i++){
+      txt += "<li>"+s[results[i][0]]+" ("+Math.floor(results[i][1]*10)/10+")</li>";
+    }
+    txt += "</ol>";
     $("#sum").html(txt);
+}
+
+function compareSecondColumn(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] > b[1]) ? -1 : 1;
+    }
 }
