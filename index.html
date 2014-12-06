@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>AI Trainer</h1>
+
+    <p><input id="title" type="text" placeholder="Title"/></p>
+    <p><textarea id="text" placeholder="content"></textarea></p>
+    <p>
+    <input id="process" type="button" value="Prepare"/>
+    <input id="highlight" type="button" value="Done highlighting" disabled/>
+    <input id="reset" type="button" value="Reset"/>
+    </p>
+    <p><div id="out" class="noselect"></div></p>
+    <hr/>
+    <div id="results"></div>
+    <p><i>Auto updates</i></p>
+    <p><div id="entries"></div></p>
+    <p id="viewer"></p>
+    <hr/>
+    <p><input type="button" onclick="calcWords();" value="Calculate word scores"/></p>
+    <p id="scoreResult" style="display:none;">Result: <a href="scores.json">JSON</a> or <a href="scores.csv">CSV</a></p>
+
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
