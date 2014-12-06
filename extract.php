@@ -1,12 +1,6 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-
 <?php
 
-$url = $_GET['url'];
+$url = $_POST['url'];
 
 $html = mb_convert_encoding(
     file_get_contents($url),
@@ -40,6 +34,3 @@ foreach($divs as $n) {
 }
 echo $currentdiv->nodeValue;
 ?>
-
-</body>
-</html>
