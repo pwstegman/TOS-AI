@@ -151,10 +151,39 @@ function calcWords(){
 
   $.post( "db.php", { wordscores: wordScores }).done(function( data ) {
     $("#scoreResult").show();
+    $("#test_btn").prop("disabled",false);
   });
 
 }
 
 function scoreSentences(){
-
+    var str = $("#test_txt").val();
+    var s = str.split(/[.\n]/);
+    var s_scores = [];
+    for(var i=0;i<s.length;i++){
+      var score = 0;
+      var words = s[i].replace(/[^\w\s]/g,"").toLowerCase().split(/\s/);
+      for(var j=0;j<words.length;j++){
+        if(words[j].length > 0 && words[j] in wordScores){
+          score += wordScores[words[j]];
+        }
+      }
+      s_scores[i] = score;
+    }
+    var scores_copy = s_scores.slice(0);
+    scores_copy.sort(function (a, b) { 
+      return b - a;
+    });
+    var min_score = 0;
+    if(scores_copy.length >= 10){
+      min_score = scores_copy[9];
+    }else{
+      min_score = scores_copy[scores_copy.length-1];
+    }
+    var txt = "";
+    for(var i=0;i<s.length;i++){
+      if(s[i].length > 0 && s_scores[i] > min_score)
+        txt += s[i]+" : "+s_scores[i]+"<br/>";
+    }
+    $("#sum").html(txt);
 }
