@@ -4,7 +4,7 @@ $url = $_REQUEST['url'];
 $cache = json_decode(file_get_contents("toscache.json"),true);
 if(isset($cache[$url]) && time()-$cache[$url]["time"] < 86400){
 	$terms = $cache[$url]["terms"];
-	$terms_str = preg_split('/((?<=[^.]{2})\.(?=[^.]{2}|$))|\([ivxa-z]*\)/i',$terms);
+	$terms_str = preg_split('/((?<=[^.]{2})\.(?=[^\w][^.]{2}|$))|\([ivxa-z]*\)/i',$terms);
 	echo json_encode($terms_str);
 	exit();
 }
@@ -49,7 +49,7 @@ $cache[$url] = array("time"=>time(),"terms"=>$terms);
 
 file_put_contents("toscache.json", json_encode($cache));
 
-$terms = preg_split('/((?<=[^.]{2})\.(?=[^.]{2}|$))|\([ivxa-z]*\)/i',$terms);
+$terms = preg_split('/((?<=[^.]{2})\.(?=[^\w][^.]{2}|$))|\([ivxa-z]*\)/i',$terms);
 
 echo json_encode($terms);
 
