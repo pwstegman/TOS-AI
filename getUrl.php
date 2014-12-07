@@ -1,6 +1,6 @@
 <?php
 
-$name = urlencode($_GET['name']);
+$name = urlencode($_POST['name']);
 $googleUrl = "http://www.google.com/search?hl=en&q=".$name."+terms&btnI=1";
 $headers = get_headers($googleUrl, 1);
 $url = $headers['Location'];
