@@ -11,7 +11,7 @@
 
   <div class="container">
 
-    <h1>AI Trainer</h1>
+    <h1>TOS AI</h1>
 
     <?php if(isset($_GET['train'])){ ?>
 

@@ -3,8 +3,10 @@ $url = $_REQUEST['url'];
 
 $cache = json_decode(file_get_contents("toscache.json"),true);
 if(isset($cache[$url]) && time()-$cache[$url]["time"] < 86400){
-	//echo $cache[$url]["terms"];
-	//exit();
+	$terms = $cache[$url]["terms"];
+	$terms_str = preg_split('/((?<=[^.]{2})\.(?=[^.]{2}|$))|\([ivxa-z]*\)/i',$terms);
+	echo json_encode($terms_str);
+	exit();
 }
 
 $doc = new DOMDocument();
