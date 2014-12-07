@@ -1,20 +1,11 @@
 <?php
-
 $url = $_POST['url'];
-
-$html = mb_convert_encoding(
-    file_get_contents($url),
-    "HTML-ENTITIES",
-    "UTF-8"
-  );
-
 $doc = new DOMDocument();
-$doc->loadHTML($html);
+$doc->loadHTMLFile($url);
 $divs = $doc->getElementsByTagName('div');
-
-$maxratio = 0;
+$currentp = 0;
+$currentc = 0;
 $currentdiv;
-
 foreach($divs as $n) {
 	$children = 0;
 	$ptags = 0;
@@ -25,12 +16,12 @@ foreach($divs as $n) {
 		$ptags += 1;
 	}
 
-	$ratio = $ptags/$children;
-
-	if($ratio > $maxratio){
-		$maxratio = $ratio;
+	if($ptags > $currentp || ($ptags == $currentp && $children < $currentc)){
 		$currentdiv = $n;
+		$currentp = $ptags;
+		$currentc = $children;
 	}
+
 }
 echo $currentdiv->nodeValue;
 ?>
