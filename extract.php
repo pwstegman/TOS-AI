@@ -47,7 +47,7 @@ $cache[$url] = array("time"=>time(),"terms"=>$terms);
 
 file_put_contents("toscache.json", json_encode($cache));
 
-$terms = preg_split('/((?<=[^.]{2})\.(?=[^.]{2}|$))|\([ivx]*\)/i',$terms);
+$terms = preg_split('/((?<=[^.]{2})\.(?=[^.]{2}|$))|\([ivxa-z]*\)/i',$terms);
 
 echo json_encode($terms);
 

@@ -18,7 +18,7 @@ function resetData(){
 
 function saveData(){
   $("#highlight").prop("disabled",true);
-  $.post( "db.php", { text: sentences, selected: selected, title: $("#title").text() }).done(function( data ) {
+  $.post( "db.php", { text: sentences, selected: selected, title: $("#train_url").val() }).done(function( data ) {
     resetData();
     loadEntries(false);
   });
@@ -79,7 +79,8 @@ function loadEntries(b){
       titles[i] = data[i].title;
       texts[i] = data[i].text;
       selects[i] = data[i].selected;
-      txt += "<li><b>"+data[i].title+"</b> [<a href='#' onclick='view("+i+");'>view</a>] [<a href='#' style='color:red;' onclick='deleteItem("+i+");'>delete</a>]</li>";
+      txt += "<li><b>"+data[i].title+"</b> [<a href='#' onclick='view("+i+");'>view</a>]</li>";
+      //[<a href='#' style='color:red;' onclick='deleteItem("+i+");'>delete</a>]
     }
     txt += "</ol>";
     $("#entries").html(txt);

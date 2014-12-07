@@ -13,7 +13,8 @@
 
     <h1>AI Trainer</h1>
 
-    <p><input id="title" type="text" placeholder="Title"/></p>
+    <?php if(isset($_GET['train'])){ ?>
+
     <p><input id="train_url" type="text" placeholder="Name of website"/> <input type="button" value="Load" onclick="train_load();"/></p>
     <p><div id="train_txt" class="loadedHtml"></div></p>
     <p>
@@ -27,12 +28,26 @@
     <p><div id="entries"></div></p>
     <p id="viewer"></p>
     <hr/>
+
+    <?php
+        }
+        if(isset($_GET['results'])){
+    ?>
+
     <p><input type="button" onclick="calcWords();" value="Retrain AI"/></p>
     <p id="scoreResult" style="display:none;">AI Training results: <a href="scores.json">JSON</a> or <a href="scores.csv">CSV</a></p>
     <hr/>
+
+    <?php
+    }
+    if(isset($_GET['test'])){
+    ?>
+
     <p><input id="test_url" type="text" placeholder="Name of website"/> <input type="button" value="Load" onclick="test_load();"/></p>
     <p><div id="test_txt" class="loadedHtml"></div></p>
     <div id="sum"></div>
+
+    <?php } ?>
 
   </div>
 
