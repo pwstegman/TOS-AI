@@ -1,5 +1,12 @@
 <?php
-$url = $_POST['url'];
+$url = $_REQUEST['url'];
+
+$cache = json_decode(file_get_contents("toscache.json"),true);
+if(isset($cache[$url]) && time()-$cache[$url]["time"] < 86400){
+	echo $cache[$url]["terms"];
+	exit();
+}
+
 $doc = new DOMDocument();
 $doc->loadHTMLFile($url);
 $divs = $doc->getElementsByTagName('div');
@@ -23,5 +30,10 @@ foreach($divs as $n) {
 	}
 
 }
-echo $currentdiv->nodeValue;
+$terms = $currentdiv->nodeValue;
+$cache[$url] = array("time"=>time(),"terms"=>$terms);
+
+file_put_contents("toscache.json", json_encode($cache));
+echo $terms;
+
 ?>
