@@ -14,7 +14,8 @@
     <h1>AI Trainer</h1>
 
     <p><input id="title" type="text" placeholder="Title"/></p>
-    <p><textarea id="text" placeholder="content"></textarea></p>
+    <p><input id="train_url" type="text" placeholder="Url"/> <input type="button" value="Load" onclick="train_load();"/></p>
+    <p><div id="train_txt" class="loadedHtml"></div></p>
     <p>
     <input id="process" type="button" value="Prepare"/>
     <input id="highlight" type="button" value="Done highlighting" disabled/>
@@ -30,7 +31,8 @@
     <p><input type="button" onclick="calcWords();" value="Retrain AI"/></p>
     <p id="scoreResult" style="display:none;">AI Training results: <a href="scores.json">JSON</a> or <a href="scores.csv">CSV</a></p>
     <hr/>
-    <p><textarea placeholder="Test AI" id="test_txt"></textarea></p>
+    <p><input id="test_url" type="text" placeholder="Url"/> <input type="button" value="Load" onclick="test_load();"/></p>
+    <p><div id="test_txt" class="loadedHtml"></div></p>
     <p><input type="button" value="calculate" onclick="scoreSentences();" id="test_btn" disabled/></p>
     <div id="sum"></div>
 

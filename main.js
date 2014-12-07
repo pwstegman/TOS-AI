@@ -19,7 +19,7 @@ function resetData(){
 
 function saveData(){
   $("#highlight").prop("disabled",true);
-  $.post( "db.php", { text: sentences, selected: selected, title: $("#title").val() }).done(function( data ) {
+  $.post( "db.php", { text: sentences, selected: selected, title: $("#title").text() }).done(function( data ) {
     resetData();
     loadEntries(false);
   });
@@ -27,14 +27,22 @@ function saveData(){
 
 function processData(){
   $("#process").prop("disabled",true);
-  var data = $("#text").val();
+  var data = $("#train_txt").text();
   sentences = data.split(/\.\s|\n/g);
-  for(var i=0;i<sentences.length;i++){
-    if(sentences[i].length == 0)
-      sentences.splice(i,1);
+  var s_i=0;
+  while(s_i<sentences.length){
+    if(isBlank(sentences[s_i])){
+      sentences.splice(s_i,1);
+    }else{
+      s_i ++;
+    }
   }
   renderData();
   $("#highlight").prop("disabled",false);
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
 }
 
 function renderData(){
@@ -162,7 +170,7 @@ function calcWords(){
 }
 
 function scoreSentences(){
-    var str = $("#test_txt").val();
+    var str = $("#test_txt").text();
     var s = str.split(/\.\s|\n/g);
     var s_scores = [];
     for(var i=0;i<s.length;i++){
@@ -206,4 +214,19 @@ function compareSecondColumn(a, b) {
     else {
         return (a[1] > b[1]) ? -1 : 1;
     }
+}
+
+function tos_from_url(url,id){
+  $.post( "extract.php", { url: url }).done(function( data ) {
+    console.log(data);
+    $("#"+id).html(data);
+  });
+}
+
+function test_load(){
+  tos_from_url($("#test_url").val(),"test_txt");
+}
+
+function train_load(){
+  tos_from_url($("#train_url").val(),"train_txt");
 }

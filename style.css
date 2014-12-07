@@ -13,3 +13,9 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.loadedHtml {
+	max-height:100px;
+	overflow:auto;
+	max-width:300px;
+}
