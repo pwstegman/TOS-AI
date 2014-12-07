@@ -216,7 +216,6 @@ function compareSecondColumn(a, b) {
 
 function tos_from_url(url,id){
   $.post( "extract.php", { url: url }).done(function( data ) {
-    console.log(data);
     $("#"+id).html(data);
     if(id == "train_txt")
       processData();
@@ -226,10 +225,14 @@ function tos_from_url(url,id){
 }
 
 function test_load(){
-  tos_from_url($("#test_url").val(),"test_txt");
+  $.post( "getUrl.php", { name: $("#test_url").val() }).done(function( data ) {
+    tos_from_url(data,"test_txt");
+  });
 }
 
 function train_load(){
   resetData();
-  tos_from_url($("#train_url").val(),"train_txt");
+  $.post( "getUrl.php", { name: $("#train_url").val() }).done(function( data ) {
+    tos_from_url(data,"train_txt");
+  });
 }
