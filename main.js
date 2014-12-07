@@ -24,9 +24,11 @@ function saveData(){
   });
 }
 
+var train_txt;
+
 function processData(){
-  var data = $("#train_txt").text();
-  sentences = data.split(/\.\s|\n/g);
+  sentences = train_txt;
+  console.log(sentences);
   var s_i=0;
   while(s_i<sentences.length){
     if(isBlank(sentences[s_i])){
@@ -167,9 +169,10 @@ function calcWords(){
 
 }
 
+var test_txt;
+
 function scoreSentences(){
-    var str = $("#test_txt").text();
-    var s = str.split(/\.\s|\n/g);
+    var s = test_txt;
     var s_scores = [];
     for(var i=0;i<s.length;i++){
       var score = 0;
@@ -215,13 +218,17 @@ function compareSecondColumn(a, b) {
 }
 
 function tos_from_url(url,id){
-  $.post( "extract.php", { url: url }).done(function( data ) {
-    $("#"+id).html(data);
-    if(id == "train_txt")
+  $.post( "extract.php", { url: url }, function( data ) {
+    console.log(data);
+    if(id == "train_txt"){
+      train_txt = data;
       processData();
-    if(id == "test_txt")
+    }
+    if(id == "test_txt"){
+      test_txt = data;
       scoreSentences();
-  });
+    }
+  }, "json");
 }
 
 function test_load(){
