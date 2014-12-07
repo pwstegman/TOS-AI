@@ -15,7 +15,5 @@
 }
 
 .loadedHtml {
-	max-height:100px;
-	overflow:auto;
-	max-width:300px;
+	display:none;
 }

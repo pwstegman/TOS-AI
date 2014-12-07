@@ -1,9 +1,9 @@
 
-$("#process").click(processData);
 $("#reset").click(resetData);
 $("#highlight").click(saveData);
 $(document).ready(function(){
    loadEntries(true);
+   $("#highlight").prop("disabled",true);
 });
 
 var sentences = [];
@@ -13,7 +13,6 @@ function resetData(){
   sentences = [];
   selected = [];
   $("#out").html("");
-  $("#process").prop("disabled",false);
   $("#highlight").prop("disabled",true);
 }
 
@@ -26,7 +25,6 @@ function saveData(){
 }
 
 function processData(){
-  $("#process").prop("disabled",true);
   var data = $("#train_txt").text();
   sentences = data.split(/\.\s|\n/g);
   var s_i=0;
@@ -220,6 +218,10 @@ function tos_from_url(url,id){
   $.post( "extract.php", { url: url }).done(function( data ) {
     console.log(data);
     $("#"+id).html(data);
+    if(id == "train_txt")
+      processData();
+    if(id == "test_txt")
+      scoreSentences();
   });
 }
 
@@ -228,5 +230,6 @@ function test_load(){
 }
 
 function train_load(){
+  resetData();
   tos_from_url($("#train_url").val(),"train_txt");
 }
