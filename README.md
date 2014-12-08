@@ -10,8 +10,9 @@ A bit of history: In the past, a friend of mine and I wrote an AI that learned t
 
 ## Screenshots
 
-![Koding](url "Koding")
-![Koding](url "Koding")
+![Overview](https://github.com/pwstegman/TOS-AI/blob/master/screenshots/overview.png "Overview")
+![Processing](https://github.com/pwstegman/TOS-AI/blob/master/screenshots/processing.png "Processing")
+![Result](https://github.com/pwstegman/TOS-AI/blob/master/screenshots/done.png "Result")
 
 ## APIs used
 
