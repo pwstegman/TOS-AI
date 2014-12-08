@@ -1,20 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <script src="https://code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="main.js"></script>
     <script>
-function load() {
-    test_txt = $("#tos").val();
-    $.post('/split.php', {data: test_txt}, function(x) {
-        test_txt = JSON.parse(x);
-        scoreSentences();
-    });
-}
+    function process() {
+            test_txt = $("#tos").val();
+            $.post('/split.php', {data: test_txt}, function(x) {
+                test_txt = JSON.parse(x);
+                scoreSentences();
+            });
+        }
     </script>
 </head>
 <body>
-    <textarea id="tos" rows="24" cols="80"></textarea>
-    <button onclick="load();">Score</button>
-    <div id="sum"></div>
+    <!--<textarea id="tos" rows="24" cols="80"></textarea>
+    <button onclick="process();">Score</button>
+    <div id="sum"></div>-->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        ...
+      </div>
+    </nav>
+    <div class="container">
+        <div style="text-align:center;">
+            <h1>QuickTerm</h1>
+            <h4>Pierce Stegman</h4>
+            <h4>Fox Wilson</h4>
+        </div>
+    </div>
 </body>
 </html>
