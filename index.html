@@ -37,7 +37,11 @@
             <h2>Try it!</h2>
             <p><textarea class="form-control" rows="3" id="tos" placeholder="Copy and paste the Terms and Conditions here"></textarea></p>
             <p><button type="button" class="btn btn-primary" onclick="process();">Process</button></p>
-            <div id="sum"></div>
+            <p id="reshow" style="display:none;"><button type="button" class="btn btn-link" onclick="reshow();" id="reshowbtn">Reshow highlighted terms</button></p>
+            <div id="show" style="display:none; overflow:auto;"></div>
+            <div id="sum" style="display:none;"></div>
+            <hr/>
+            <p>Disclaimer: QuickTerms should only be used to get a general idea of the Terms and Conditions.  Do not rely on QuickTerms for a perfect overview of the Terms and Conditions of a site.</p>
         </div>
         </div>
         </div>

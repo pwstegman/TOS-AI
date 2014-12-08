@@ -171,10 +171,16 @@ function calcWords(){
 }
 
 var test_txt;
+var s_scores;
+var min_score;
 
 function scoreSentences(){
+
+    $("#show").hide();
+    $("#sum").hide();
+
     var s = test_txt;
-    var s_scores = [];
+    s_scores = [];
     for(var i=0;i<s.length;i++){
       var score = 0;
       var words = s[i].replace(/[^\w\s]/g,"").toLowerCase().split(/\s/);
@@ -189,7 +195,7 @@ function scoreSentences(){
     scores_copy.sort(function (a, b) { 
       return b - a;
     });
-    var min_score = 0;
+    min_score = 0;
     if(scores_copy.length >= 10){
       min_score = scores_copy[9];
     }else{
@@ -203,10 +209,66 @@ function scoreSentences(){
     results.sort(compareSecondColumn);
     var txt = "<ol>";
     for(var i=0;i<results.length;i++){
-      txt += "<li>"+s[results[i][0]]+" ("+Math.floor(results[i][1]*10)/10+")</li>";
+      txt += "<li>"+fixCase(s[results[i][0]])+" ("+Math.floor(results[i][1]*10)/10+")</li>";
     }
     txt += "</ol>";
     $("#sum").html(txt);
+    showProcess();
+}
+
+function showProcess(){
+  var text = "";
+  for(var i=0;i<test_txt.length;i++){
+    text += "<span id='piece"+i+"'>"+test_txt[i].trim()+". </span>";
+  }
+  $("#show").html(text);
+  $("#show").show("slow",function(){
+    setTimeout(function(){
+      showScore(0);
+    },500);
+  });
+}
+
+function showScore(i){
+
+  if(s_scores[i] < min_score){
+    $("#piece"+i).css("color","red");
+  }else{
+    $("#piece"+i).css("color","blue");
+  }
+  i++;
+  if(i < s_scores.length){
+    setTimeout(function(){showScore(i);},75);
+  }else{
+    setTimeout(finishAnim,1000);
+  }
+}
+
+function finishAnim(){
+  $("#show").hide("slow",function(){
+    $("#show").html($("#show").html()+"<hr/>");
+    $("#sum").show("slow", function(){
+      $("#reshow").show("slow");
+    });
+  });
+}
+
+function reshow(){
+  if($("#reshowbtn").text() == "Reshow highlighted terms"){
+    $("#reshowbtn").text("Hide highlighted terms");
+  }else{
+    $("#reshowbtn").text("Reshow highlighted terms");
+  }
+  $("#show").toggle("slow");
+}
+
+function fixCase(str){
+  str = str.trim();
+  if(str.toUpperCase() == str){
+    return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+  }else{
+    return str.charAt(0).toUpperCase() + str.substr(1);
+  }
 }
 
 function compareSecondColumn(a, b) {
