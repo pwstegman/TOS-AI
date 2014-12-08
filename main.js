@@ -2,7 +2,6 @@
 $("#reset").click(resetData);
 $("#highlight").click(saveData);
 $(document).ready(function(){
-   loadEntries(true);
    $("#highlight").prop("disabled",true);
 });
 
@@ -209,7 +208,7 @@ function scoreSentences(){
     results.sort(compareSecondColumn);
     var txt = "<ol>";
     for(var i=0;i<results.length;i++){
-      txt += "<li>"+fixCase(s[results[i][0]])+" ("+Math.floor(results[i][1]*10)/10+")</li>";
+      txt += "<li>"+fixCase(s[results[i][0]])+" (Importance score: "+Math.floor(results[i][1]*10)/10+")</li>";
     }
     txt += "</ol>";
     $("#sum").html(txt);
