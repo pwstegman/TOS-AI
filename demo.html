@@ -7,8 +7,8 @@ function load() {
     test_txt = $("#tos").val();
     $.post('/split.php', {data: test_txt}, function(x) {
         test_txt = JSON.parse(x);
+        scoreSentences();
     });
-    scoreSentences();
 }
     </script>
 </head>
