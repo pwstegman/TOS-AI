@@ -7,13 +7,11 @@ $options  = array('http' => array('user_agent' => 'Mozilla/5.0 (Windows NT 6.1) 
 $context  = stream_context_create($options);
 
 $cache = json_decode(file_get_contents("toscache.json"),true);
-/*if(isset($cache[$url]) && time()-$cache[$url]["time"] < 86400){
+if(isset($cache[$url]) && time()-$cache[$url]["time"] < 86400){
 	$terms = $cache[$url]["terms"];
-	$terms = mb_convert_encoding($terms,"UTF-8","auto");
-	$terms_str = preg_split($regex,$terms);
-	echo json_encode($terms_str);
+	echo $terms;
 	exit();
-}*/
+}
 
 $doc = new DOMDocument();
 $doc->loadHTML(file_get_contents($url,false,$context));
@@ -60,10 +58,6 @@ $cache[$url] = array("time"=>time(),"terms"=>$terms);
 
 file_put_contents("toscache.json", json_encode($cache));
 
-$terms = mb_convert_encoding($terms,"UTF-8","auto");
-
-$terms = preg_split($regex,$terms);
-
-echo json_encode($terms);
+echo $terms;
 
 ?>
