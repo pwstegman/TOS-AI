@@ -15,21 +15,31 @@
             });
         }
     </script>
+    <style>
+        html, body {
+            background-color: #EEE;
+        }
+        body {
+            padding-top:50px;
+        }
+    </style>
 </head>
 <body>
-    <!--<textarea id="tos" rows="24" cols="80"></textarea>
-    <button onclick="process();">Score</button>
-    <div id="sum"></div>-->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-        ...
-      </div>
-    </nav>
     <div class="container">
-        <div style="text-align:center;">
-            <h1>QuickTerm</h1>
-            <h4>Pierce Stegman</h4>
-            <h4>Fox Wilson</h4>
+    <div class="panel panel-default">
+    <div class="panel-body" style="overflow:auto;">
+        <div style="text-align:left;">
+            <div class="page-header">
+              <h1>QuickTerms <small>An AI designed and trained for the Koding Hackathon</small></h1>
+            </div>
+            <p class="lead"></p>
+            <p class="lead">The dreaded "I Accept" checkbox.  You need to check it almost every time you register for a website or service. We live in the fast paced world of technology, and nobody wants to slow down to read something as long and boring as the Terms and Conditions.  QuickTerms makes this an issue no longer!  QuickTerms is a smart service that can read the Terms and Conditions for you, and then show you only the most important pieces.</p>
+            <h2>Try it!</h2>
+            <p><textarea class="form-control" rows="3" id="tos" placeholder="Copy and paste the Terms and Conditions here"></textarea></p>
+            <p><button type="button" class="btn btn-primary" onclick="process();">Process</button></p>
+            <div id="sum"></div>
+        </div>
+        </div>
         </div>
     </div>
 </body>
