@@ -4,7 +4,7 @@
 
 As the Koding hackathon is over, the project is no longer hosted on koding.io.
 
-Originally written in PHP, I rewrote some parts of the project with meteor (http://meteor.com) , and the project can now be found permanently at http://tosai.meteor.com
+Originally written in PHP, I rewrote some parts of the project with meteor (http://meteor.com), and the project can now be found permanently at http://tosai.meteor.com
 
 ## Description
 
