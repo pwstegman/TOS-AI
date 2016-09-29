@@ -9,8 +9,7 @@
     <script src="main.js"></script>
     <script>
     function process() {
-            var re = /[.] /;
-            test_txt = $("#tos").val().split(re);
+            test_txt = $("#tos").val().replace(/\n/g, ". ").split(". ");
             scoreSentences();
         }
     </script>
