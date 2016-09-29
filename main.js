@@ -114,7 +114,7 @@ function deleteItem(id){
   }else if(text != null){
     alert("Incorrect");
   }
-  
+
 }
 
 function view(id){
@@ -201,7 +201,7 @@ function scoreSentences(){
       s_scores[i] = score;
     }
     var scores_copy = s_scores.slice(0);
-    scores_copy.sort(function (a, b) { 
+    scores_copy.sort(function (a, b) {
       return b - a;
     });
     min_score = 0;
