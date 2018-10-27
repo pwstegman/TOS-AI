@@ -1,4 +1,4 @@
-#QuickTerms
+# QuickTerms
 
 As the Koding hackathon is over, the project is no longer hosted on koding.io.
 
